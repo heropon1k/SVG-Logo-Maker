@@ -2,22 +2,17 @@ const inquirer = require('inquirer');
 const colors = require('colors');
 const fs = require('fs');
 const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt');
+const render = require("./lib/shapes.js")
 
 inquirer.registerPrompt('maxlenght-input', MaxLengthInputPrompt)
+        
+function renderSVG(input){
+    let svg = render.generate(input)
+    console.log(svg);
 
-
-class Input{
-    constructor(text, textcolor, shape, shapecolor){
-        this.text = text;
-        this.textcolor = textcolor;
-        this.shape = shape;
-        this.shapecolor = shapecolor;
-    }
-    writeToFile(){
-        fs.writeFile("logo.svg", data, (err =>
-            err ? console.error(err) : console.log("Generated logo.svg") 
-        ))
-    }
+    fs.writeFile("logo.svg", svg,(err =>
+        err ? console.error(err) : console.log("Generated logo.svg")
+    ))
 }
 
 function init(){
@@ -39,9 +34,9 @@ function init(){
             name: 'shape',
             message: colors.brightMagenta('What is the shape?'),
             choices: [
-                "circle",
-                "triangle",
-                "square"
+                "Circle",
+                "Triangle",
+                "Square"
             ]
         },
         {
@@ -51,8 +46,9 @@ function init(){
         }
     ])
     .then((input) => {
-        const userinput = new Input(input.text,input.textcolor,input.shape,input.shapecolor);
-        console.log(userinput)
+        
+        console.log(input);
+        renderSVG(input)
     })
    
 }
