@@ -59,6 +59,5 @@
 
   ### Project Links: 
 
- - [Github Repository](https://github.com/heropon1k/Readme-Generator)
+ - [Github Repository](https://github.com/heropon1k/SVG-LOGO_MAKER)
 
- - [Deployed Site](test)
